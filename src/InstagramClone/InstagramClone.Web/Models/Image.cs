@@ -12,6 +12,6 @@ namespace InstagramClone.Web.Models
 
         public string Description { get; set; }
 
-        public byte[] PictureDate { get; set; }
+        public byte[] ImageData { get; set; }
     }
 }
