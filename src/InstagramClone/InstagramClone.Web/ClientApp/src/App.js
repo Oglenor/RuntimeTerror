@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Route} from 'react-router';
-import {Layout} from './components/Layout';
-import {Home} from './components/Home';
+import {Layout} from './components/Layout/Layout';
+import {Home} from './components/Home/Home';
 import {FetchData} from './components/FetchData';
-import {Counter} from './components/Counter';
+import {Upload} from './components/Upload/Upload';
 
 import './custom.css'
-import {Login} from "./components/Login";
+import {Login} from "./components/Login/Login";
 
 export default function App() {
 
@@ -18,7 +18,7 @@ export default function App() {
             {
                 isLoggedIn && <Layout>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/counter' component={Counter}/>
+                    <Route path='/upload' component={Upload}/>
                     <Route path='/fetch-data' component={FetchData}/>
                 </Layout>
             }

@@ -1,0 +1,29 @@
+.login-wrapper {
+    height: 100vh; /* view height */
+    display: flex;
+    justify-content: center; /*horizontal align*/
+    align-items: center; /*vertical align*/
+    background: url("../../assets/images/bg-hd.jpg") no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 0; /* legalul van */
+    margin-top: -57px;
+}
+
+.login-wrapper__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.card-login {
+    max-width: 500px;
+}
+
+.card-login__logo {
+    width: 200px;
+    margin: 0 auto 24px;
+}
