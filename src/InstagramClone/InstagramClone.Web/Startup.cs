@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,7 +55,7 @@ namespace InstagramClone.Web
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-
+           
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
