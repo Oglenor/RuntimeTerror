@@ -15,23 +15,24 @@ namespace InstagramClone.Web.Controllers
         private static List<Image> _images = new List<Image>();
 
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload([FromForm] string title, [FromForm] string uploader, [FromForm] string description, [FromForm] IFormFile file)
+        public async Task<IActionResult> Upload([FromForm] ImageDTO image)
         {
             var newImage = new Image()
             {
-                Title = title,
-                Description = description,
-                Uploader = uploader,
+                Title = image.Title,
+                Description = image.Description,
                 UploadDate = DateTime.Now,
+                Uploader = "valaki", // User.Identity.Name vagy valami ilyesmi gondolom van a facebook loginnal is?
             };
 
-            using (var stream = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
-                await file.CopyToAsync(stream);
-                newImage.ImageData = stream.ToArray();
+                await image.File.CopyToAsync(ms);
+                newImage.ImageData = ms.ToArray();
             }
 
             _images.Add(newImage);
+
             return Ok();
         }
     }
