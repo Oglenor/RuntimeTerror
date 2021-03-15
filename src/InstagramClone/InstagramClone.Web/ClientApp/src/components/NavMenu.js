@@ -42,9 +42,9 @@ export class NavMenu extends Component {
               </NavbarBrand>
               <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
               {this.state.searchBarShowed && (
-              <nav className="navbar navbar-light bg-light">
+              <nav className="navbar navbar-light bg-light navbar-center">
                 <form className="form-inline">
-                  <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                  <input className="form-control mr-sm-2 input-search" type="search" placeholder="Search" aria-label="Search"/>
                 </form>
               </nav>
               )}
