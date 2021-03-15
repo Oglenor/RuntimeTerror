@@ -63,21 +63,21 @@ export class Upload extends  Component {
                     </ToastBody>
                 </Toast>
                 <div className="upload-wrapper">
-                    <h1 className="text center page-header">Új post</h1>
+                    <h1 className="text center page-header">New post</h1>
                     <div className="upload">
                         <Input type="file" onChange={this.handlefileSelected}/>
-                        <h3 className="upload--title">Válassz képet!</h3>
+                        <h3 className="upload--title">Choose picture!</h3>
                     </div>
                 </div>
 
                 {this.state.selectedFilePreview && (
                     <div className="preview-wrapper">
                         <img className="preview--img" src={this.state.selectedFilePreview} alt=""/>
-                        <p>Írj leírást a képhez:</p>
+                        <p>Write some caption:</p>
                         <input
                             type="text" value={this.state.description} onChange={this.handleDescriptionChange}
                         />
-                        <Button color="primary" className="button-upload" onClick={() => this.upload()}>Feltöltés</Button>
+                        <Button color="primary" className="button-upload" onClick={() => this.upload()}>Upload</Button>
                     </div>
                 )}
                 {this.state.showSpinner && (
