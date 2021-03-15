@@ -36,7 +36,10 @@ namespace InstagramClone.Web.Controllers
             return Ok();
         }
 
-        [HttpPost("list")]
-        public IEnumerable<Image> Get() => _images;
+        [HttpGet("getimages")]
+        public IEnumerable<Image> GetImages() 
+        {
+            return _images;
+        }
     }
 }
