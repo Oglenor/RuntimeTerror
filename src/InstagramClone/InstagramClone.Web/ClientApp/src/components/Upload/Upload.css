@@ -1,0 +1,34 @@
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload {
+    width: 200px;
+    margin: 0 auto;
+    height: 100px;
+    border: 2px solid var(--blue);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.upload__title {
+    color: var(--blue);
+}
+
+.upload input[type="file"] {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.button-upload {
+    margin: 24px auto;
+}
