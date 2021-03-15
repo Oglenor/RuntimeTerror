@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05364208-1158-4f31-a7ed-40d753692a79" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Layout/Layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Layout/Layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Upload/Upload.css" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Upload/Upload.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Upload/Upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramClone.Web/ClientApp/src/components/Upload/Upload.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -31,11 +31,11 @@ export class Upload extends  Component {
         this.setState({showSpinner: true});
         try {
             const res = await axios.post('https://localhost:5001/image/upload', imageDtoForm);
-            this.setState({show: true, success: true});
+            this.setState({show: true, success: true, showSpinner: false});
             console.log(res);
         } catch (ex) {
             console.log(ex);
-            this.setState({show: true});
+            this.setState({show: true, showSpinner:false});
         }
     }
 
