@@ -15,7 +15,7 @@ export class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch("https://picsum.photos/v2/list?limit=10")
+        fetch("https://localhost:44371/image/getimages")
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -32,17 +32,19 @@ export class Home extends Component {
     }
 
     render() {
-        const items  = this.state.items;
+        const items = this.state.items;
+        console.log(items);
+        let i = 0;
         return (
             <Container>
                 <h1 className="text-center page-header">Home</h1>
                 <Row>
                     {items.map(item =>
-                    <Col sm="12" md="6" key={item.id}>
-                        <Card className="card-post">
-                            <CardImg top width="100%" src={item.download_url} alt="Card image cap"/>
+                        <Col sm="12" md="6" key={i++}>
+                            <Card className="card-post">                                
+                                <CardImg top width="100%" src={"data:image/jpeg;base64,"+item.imageData} alt="Card image cap"/>
                             <CardBody>
-                                <CardTitle tag="h5">{`${item.author} képe`}</CardTitle>
+                                <CardTitle tag="h5">{`${item.uploader} képe`}</CardTitle>
                                 <CardText>
                                     <small className="text-muted">Last updated 3 min ago</small>
                                 </CardText>
