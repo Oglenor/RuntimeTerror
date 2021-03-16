@@ -23,7 +23,6 @@ export class Upload extends  Component {
 
     async upload() {
         let imageDtoForm = new FormData();
-
         imageDtoForm.append('Title', "sometitle");
         imageDtoForm.append('Description', this.state.description);
         imageDtoForm.append('File', this.state.selectedFile);
@@ -33,6 +32,9 @@ export class Upload extends  Component {
             const res = await axios.post('https://localhost:5001/image/upload', imageDtoForm);
             this.setState({show: true, success: true, showSpinner: false});
             console.log(res);
+            setTimeout(() => {
+                this.props.history.push("/")
+            }, 1500);
         } catch (ex) {
             console.log(ex);
             this.setState({show: true, showSpinner:false});
