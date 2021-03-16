@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Col, Row, CardImg, Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Container, Col, Row, CardImg, Card, CardBody, CardTitle, CardText, CardSubtitle} from 'reactstrap'
 import './Home.css'
 
 export class Home extends Component {
@@ -15,7 +15,7 @@ export class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch("https://localhost:44371/image/getimages")
+        fetch("https://localhost:5001/image")
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -45,6 +45,7 @@ export class Home extends Component {
                                 <CardImg top width="100%" src={"data:image/jpeg;base64,"+item.imageData} alt="Card image cap"/>
                             <CardBody>
                                 <CardTitle tag="h5">{`${item.uploader} képe`}</CardTitle>
+                                <CardSubtitle tag="h8" className="mb-2 text-muted">{item.description}</CardSubtitle>
                                 <CardText>
                                     <small className="text-muted">Last updated 3 min ago</small>
                                 </CardText>

@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown,DropdownToggle,DropdownItem, DropdownMenu} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import './NavMenu.css';
-import {HiHome, HiSearch} from 'react-icons/hi';
+import { HiHome, HiSearch} from 'react-icons/hi';
 import { FiUpload } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
-import navBarPhoto from '../assets/images/logo-horizontal.png';
+import navBarPhoto from '../../assets/images/logo-horizontal.png';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -59,9 +59,6 @@ export class NavMenu extends Component {
                   <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/upload"><FiUpload size="24px"/></NavLink>
                   </NavItem>
-                  {/*                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>*/}
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav >
                       <CgProfile size="24px" className="text-dark"/>
