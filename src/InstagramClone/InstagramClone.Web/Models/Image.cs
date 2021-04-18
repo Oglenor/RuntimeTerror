@@ -4,7 +4,9 @@ namespace InstagramClone.Web.Models
 {
     public class Image
     {
-        public string Uploader { get; set; }
+        public int Id { get; set; }
+
+        public ApplicationUser Uploader { get; set; }
 
         public string Title { get; set; }
 

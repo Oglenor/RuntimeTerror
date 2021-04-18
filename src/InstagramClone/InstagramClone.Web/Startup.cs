@@ -26,6 +26,11 @@ namespace InstagramClone.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddAuthentication().AddFacebook(options => 
+            {
+                options.AppId = "261966568972723";
+                options.AppSecret = "e4263b00a8f1a6f863d567797c2f4cba";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

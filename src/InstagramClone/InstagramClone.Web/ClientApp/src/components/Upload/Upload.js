@@ -29,7 +29,7 @@ export class Upload extends  Component {
 
         this.setState({showSpinner: true});
         try {
-            const res = await axios.post('https://localhost:5001/image/upload', imageDtoForm);
+            const res = await axios.post('https://localhost:44371/image/upload', imageDtoForm);
             this.setState({show: true, success: true, showSpinner: false});
             console.log(res);
             setTimeout(() => {
