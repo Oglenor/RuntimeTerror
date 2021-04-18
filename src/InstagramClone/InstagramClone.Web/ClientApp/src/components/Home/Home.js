@@ -15,7 +15,7 @@ export class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch("https://localhost:44371/image")
+        fetch("https://localhost:5001/image")
             .then(res => res.json())
             .then((result) => {
                     this.setState({
