@@ -22,7 +22,7 @@ namespace InstagramClone.Web.Controllers
                 Title = image.Title,
                 Description = image.Description,
                 UploadDate = DateTime.Now,
-                Uploader = "valaki", // User.Identity.Name vagy valami ilyesmi gondolom van a facebook loginnal is?
+                Uploader = null, // User.Identity.Name vagy valami ilyesmi gondolom van a facebook loginnal is?
             };
 
             using (var ms = new MemoryStream())

@@ -1,6 +1,10 @@
+using InstagramClone.Web.Models;
+using InstagramClone.Web.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,10 +30,17 @@ namespace InstagramClone.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddDbContext<ApplicationDbContext>(opt => 
+            {
+                opt.UseSqlServer(Configuration["ConnectionString"]);
+            });
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddAuthentication().AddFacebook(options => 
             {
-                options.AppId = "261966568972723";
-                options.AppSecret = "e4263b00a8f1a6f863d567797c2f4cba";
+                options.AppId = Configuration["FacebookAppId"];
+                options.AppSecret = Configuration["FaceBookAppSecret"];
             });
         }
 

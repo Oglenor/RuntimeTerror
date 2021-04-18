@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace InstagramClone.Web.Models
 {
@@ -13,6 +15,8 @@ namespace InstagramClone.Web.Models
         public DateTime UploadDate { get; set; }
 
         public string Description { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public byte[] ImageData { get; set; }
     }
