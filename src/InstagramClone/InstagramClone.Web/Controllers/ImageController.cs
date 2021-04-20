@@ -58,7 +58,7 @@ namespace InstagramClone.Web.Controllers
         }
 
         [HttpGet]
-        [Route("dislikelike/{id}")]
+        [Route("dislike/{id}")]
         public async Task<IActionResult> DislikeImage(int id)
         {
             var image = await _dbContext.Images.FirstOrDefaultAsync(x => x.Id == id);
