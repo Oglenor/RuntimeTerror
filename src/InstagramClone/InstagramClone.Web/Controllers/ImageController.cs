@@ -1,6 +1,8 @@
 ﻿using InstagramClone.Web.Models;
+using InstagramClone.Web.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +14,12 @@ namespace InstagramClone.Web.Controllers
     [ApiController]
     public class ImageController : ControllerBase
     {
-        private static List<Image> _images = new List<Image>();
+        private readonly ApplicationDbContext _dbContext;
+
+        public ImageController(ApplicationDbContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
 
         [HttpPost("upload")]
         public async Task<IActionResult> Upload([FromForm] ImageDTO image)
@@ -22,7 +29,6 @@ namespace InstagramClone.Web.Controllers
                 Title = image.Title,
                 Description = image.Description,
                 UploadDate = DateTime.Now,
-                Uploader = "valaki", // User.Identity.Name vagy valami ilyesmi gondolom van a facebook loginnal is?
             };
 
             using (var ms = new MemoryStream())
@@ -31,15 +37,36 @@ namespace InstagramClone.Web.Controllers
                 newImage.ImageData = ms.ToArray();
             }
 
-            _images.Add(newImage);
+            _dbContext.Images.Add(newImage);
+            await _dbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Image>> GetImages() => await _dbContext.Images.ToListAsync();
+
+        [HttpGet]
+        [Route("like/{id}")]
+        public async Task<IActionResult> LikeImage(int id)
+        {
+            var image = await _dbContext.Images.FirstOrDefaultAsync(x => x.Id == id);
+
+            image.LikeCount++;
+            await _dbContext.SaveChangesAsync();
 
             return Ok();
         }
 
         [HttpGet]
-        public IEnumerable<Image> GetImages() 
+        [Route("dislikelike/{id}")]
+        public async Task<IActionResult> DislikeImage(int id)
         {
-            return _images;
+            var image = await _dbContext.Images.FirstOrDefaultAsync(x => x.Id == id);
+
+            image.LikeCount--;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

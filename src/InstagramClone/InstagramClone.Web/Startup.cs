@@ -1,6 +1,10 @@
+using InstagramClone.Web.Models;
+using InstagramClone.Web.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +23,15 @@ namespace InstagramClone.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => {
+                options.AddPolicy("mypolicy", builder => {
+                    builder
+                    .SetIsOriginAllowed(x => _ = true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+                });
+            });
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -26,6 +39,23 @@ namespace InstagramClone.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddDbContext<ApplicationDbContext>(opt =>
+            {
+                opt.UseSqlServer(Configuration["ConnectionString"]);
+            });
+
+            services.AddAuthentication().AddCookie(options =>
+            {
+                options.LoginPath = "/api/Auth/signin";
+            }).AddFacebook(options =>
+            {
+                options.AppId = Configuration["Authentication:Facebook:AppId"];
+                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                options.SaveTokens = true;                
+            });
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,11 +72,14 @@ namespace InstagramClone.Web
                 app.UseHsts();
             }
 
+            app.UseCors("mypolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();     
+            
+            app.UseAuthentication();                  
 
             app.UseEndpoints(endpoints =>
             {
@@ -54,7 +87,7 @@ namespace InstagramClone.Web
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-           
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
