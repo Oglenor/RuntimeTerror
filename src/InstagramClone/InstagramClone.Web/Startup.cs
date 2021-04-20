@@ -72,6 +72,7 @@ namespace InstagramClone.Web
                 app.UseHsts();
             }
 
+            app.UseCors("mypolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

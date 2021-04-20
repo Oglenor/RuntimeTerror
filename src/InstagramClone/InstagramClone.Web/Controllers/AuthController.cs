@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 namespace InstagramClone.Web.Controllers
 {    
     [Route("api/[controller]")]
-    [ApiController]  
+    [ApiController]
     [EnableCors("mypolicy")]
     public class AuthController : ControllerBase
     {
+        private readonly UserManager<ApplicationUser> _userManager;
        // private readonly UserManager<ApplicationUser> _userManager;
                 
         //public AuthController(UserManager<ApplicationUser> userManager)
