@@ -15,7 +15,7 @@ namespace InstagramClone.Web.Controllers
     [EnableCors("mypolicy")]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
        // private readonly UserManager<ApplicationUser> _userManager;
                 
         //public AuthController(UserManager<ApplicationUser> userManager)
