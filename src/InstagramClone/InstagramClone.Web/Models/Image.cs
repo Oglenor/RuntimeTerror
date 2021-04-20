@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstagramClone.Web.Models
 {
     public class Image
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        public ApplicationUser Uploader { get; set; }
 
         public string Title { get; set; }
 
@@ -16,7 +16,7 @@ namespace InstagramClone.Web.Models
 
         public string Description { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public int LikeCount { get; set; }              
 
         public byte[] ImageData { get; set; }
     }

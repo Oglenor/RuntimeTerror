@@ -12,7 +12,7 @@ export const Login = (props) => {
                 <CardImg top className="card-login__logo" src={logo} alt="Card image cap"/>
                 <CardTitle tag="h5">Üdvözlünk az ImageHubon</CardTitle>
                 <CardText>A folytatáshoz be kell jelentkezned a Facebook profiloddal</CardText>
-                <Button color="primary" onClick={() => axios.post('https://localhost:5001/api/auth/signin').then(res => console.log(res)).catch(err => console.log(err))}>
+                <Button color="primary" onClick={() => setTimeout(() => { props.onLogin(true) }, 1000)}>
                     Bejelentkezés Facebookkal</Button>
             </Card>
         </div>)

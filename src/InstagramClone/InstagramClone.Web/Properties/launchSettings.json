@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -12,7 +12,9 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VaultUri": "https://instagramclonewebvault.vault.azure.net/",
+        "AZURE_USERNAME": "ladanyi.kristof@stud.uni-obuda.hu"
       }
     },
     "InstagramClone.Web": {
@@ -20,7 +22,9 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VaultUri": "https://instagramclonewebvault.vault.azure.net/",
+        "AZURE_USERNAME": "ladanyi.kristof@stud.uni-obuda.hu"
       }
     }
   }

@@ -22,7 +22,16 @@ namespace InstagramClone.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
+            services.AddCors(options => {
+                options.AddPolicy("mypolicy", builder => {
+                    builder
+                    .SetIsOriginAllowed(x => _ = true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+                });
+            });
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -35,7 +44,6 @@ namespace InstagramClone.Web
             {
                 opt.UseSqlServer(Configuration["ConnectionString"]);
             });
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication().AddCookie(options =>
             {
@@ -47,16 +55,7 @@ namespace InstagramClone.Web
                 options.SaveTokens = true;                
             });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("mypolicy", builder => builder
-                 .WithOrigins("https://localhost:5001/")
-                 .SetIsOriginAllowed((host) => true)
-                 .AllowAnyMethod()
-                 .AllowAnyHeader()
-                 .AllowCredentials()
-                 );
-            });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +76,6 @@ namespace InstagramClone.Web
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseCors("mypolicy");
             app.UseRouting();     
             
             app.UseAuthentication();                  

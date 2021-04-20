@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {Component} from 'react';
 import {Container, Col, Row, CardImg, Card, CardBody, CardTitle, CardText, CardSubtitle} from 'reactstrap'
 import './Home.css'
@@ -15,7 +16,7 @@ export class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch("https://localhost:5001/image")
+        fetch("https://runtimeterrorinstaclone.azurewebsites.net/image")
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -29,6 +30,7 @@ export class Home extends Component {
                         error
                     });
                 })
+       // axios.get("https://localhost:5001/image/like/1").then(res => console.log(res)).catch(err => console.log(err))
     }
 
     render() {
