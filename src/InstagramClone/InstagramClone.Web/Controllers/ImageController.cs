@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InstagramClone.Web.Controllers
@@ -68,5 +69,14 @@ namespace InstagramClone.Web.Controllers
 
             return Ok();
         }
+
+
+        [HttpGet]
+        [Route("own")]
+        public async Task<IEnumerable<Image>> GetOwnImages(int id) => await _dbContext.Images.Where(x => x.Id == id).ToListAsync();
+
+        [HttpGet]
+        [Route("friend")]
+        public async Task<IEnumerable<Image>> GetFriendsImages(int id) => await _dbContext.Images.ToListAsync();
     }
 }

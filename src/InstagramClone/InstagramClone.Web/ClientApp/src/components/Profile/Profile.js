@@ -17,8 +17,7 @@ export class Profile extends Component {
     }
 
     componentDidMount() {
-        // TODO: cnange url
-        fetch("fetchusersimages")
+        fetch("https://runtimeterrorinstaclone.azurewebsites.net/image/own")
             .then(res => res.json())
             .then((result) => {
                     this.setState({
