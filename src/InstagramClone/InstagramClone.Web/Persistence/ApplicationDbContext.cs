@@ -11,5 +11,7 @@ namespace InstagramClone.Web.Persistence
         }
 
         public DbSet<Image> Images { get; set; }
+
+        public DbSet<ApplicationUser> Users {get;set;}
     }
 }

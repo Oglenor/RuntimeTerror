@@ -1,7 +1,7 @@
 ﻿using InstagramClone.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Facebook;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,59 +9,57 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace InstagramClone.Web.Controllers
-{    
+{
     [Route("api/[controller]")]
-    [ApiController]
-    [EnableCors("mypolicy")]
-    public class AuthController : ControllerBase
+    public class AuthController : Controller
     {
-        //private readonly UserManager<ApplicationUser> _userManager;
-       // private readonly UserManager<ApplicationUser> _userManager;
-                
-        //public AuthController(UserManager<ApplicationUser> userManager)
-        //{
-        //    this._userManager = userManager;
-        //}
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        //[Route("signin")]
-        //public IActionResult SignInWithFacebook(string returnUrl)
-        //{
-        //    var redirectUrl = Url.Action(nameof(AuthController.SignInCallback), "Auth", new { returnUrl = returnUrl });
-        //    return Challenge(new AuthenticationProperties()
-        //    {
-        //        RedirectUri = redirectUrl,
-        //    }, FacebookDefaults.AuthenticationScheme);
-        //}
+        public AuthController(UserManager<ApplicationUser> userManager)
+        {
+            this._userManager = userManager;
+        }
 
-        //[Route("callback")]
-        //[HttpGet]
-        //public async Task<IActionResult> SignInCallback(string returnUrl)
-        //{
-        //    var authResult = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
+        [Route("signin")]
+        public IActionResult Signin()
+        {
+            var redirectUrl = Url.Action(nameof(AuthController.SignInCallback), "Auth", new { returnUrl = "/index" });
 
-        //    if (!authResult.Succeeded)
-        //    {
-        //        return Forbid();
-        //    }
+            return Challenge(new AuthenticationProperties()
+            {
+                RedirectUri = redirectUrl,
+            }, FacebookDefaults.AuthenticationScheme);
+        }
 
-        //    var user = _userManager.FindByNameAsync(authResult.Ticket.Principal.FindFirst(ClaimTypes.NameIdentifier).Value);
+        [Route("callback")]
+        [HttpGet]
+        public async Task<IActionResult> SignInCallback(string returnUrl)
+        {
+            var authResult = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
 
-        //    if (user is null)
-        //    {
-        //        var result = await _userManager.CreateAsync(new ApplicationUser()
-        //        {
-        //            UserName = authResult.Ticket.Principal.FindFirst(ClaimTypes.NameIdentifier).Value,
-        //        });
+            if (!authResult.Succeeded)
+            {
+                return Forbid();
+            }
 
-        //        if (!result.Succeeded)
-        //        {
-        //            throw new Exception("User creation failed.");
-        //        }
-        //    }
+            var user = _userManager.FindByNameAsync(authResult.Ticket.Principal.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-        //    await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme, new ClaimsPrincipal(authResult.Ticket.Principal.Identity));
+            if (user is null)
+            {
+                var result = await _userManager.CreateAsync(new ApplicationUser()
+                {
+                    UserName = authResult.Ticket.Principal.FindFirst(ClaimTypes.NameIdentifier).Value,
+                });
 
-        //    return LocalRedirect(returnUrl);
-        //}
+                if (!result.Succeeded)
+                {
+                    throw new Exception("User creation failed.");
+                }
+            }
+
+            await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme, new ClaimsPrincipal(authResult.Ticket.Principal.Identity));
+
+            return LocalRedirect(returnUrl);
+        }
     }
 }
