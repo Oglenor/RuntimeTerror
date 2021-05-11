@@ -6,7 +6,6 @@ import { HiHome, HiSearch} from 'react-icons/hi';
 import { FiUpload } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
 import navBarPhoto from '../../assets/images/logo-horizontal.png';
-import {AiFillProfile} from "react-icons/all";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -59,9 +58,6 @@ export class NavMenu extends Component {
                   </NavItem>
                   <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/upload"><FiUpload size="24px"/></NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/profile"><AiFillProfile size="24px"/></NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav >
