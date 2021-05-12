@@ -1,0 +1,22 @@
+body {
+    padding-top: 57px;
+}
+
+.page-header {
+    margin: 24px;
+}
+
+.toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 1100;
+    color: white;
+}
+
+.success {
+    background-color: var(--success);
+}
+.fail{
+    background-color: var(--danger);
+}
